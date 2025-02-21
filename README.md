@@ -1,54 +1,62 @@
-# Sun (Your Meme Coin Name)
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-A short, catchy, and informative description of your meme coin.  Examples:
+import "@openzeppelin/contracts/token/Sun/sun.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol"; // Import ReentrancyGuard
 
-* "Sun is a community-driven meme coin radiating positive vibes. Join our solar system of fun!"
-* "Sun: The meme coin that's bringing the heat! Get ready to shine with our community."
-* "Sun: A beacon of light in the meme coin universe. Join our journey to the center of fun!"
+contract MyMemeCoin is sun, Ownable, ReentrancyGuard { // Inherit ReentrancyGuard
+    uint8 public constant decimals = 18;
+    uint256 public constant initialSupply = 1000000000 * 10**decimals; // 1 Billion tokens
 
-## Table of Contents (Optional but Recommended)
+    bool public tradingEnabled = false; // Start trading as disabled.
 
-* [Tokenomics](#tokenomics)
-* [Smart Contract](#smart-contract)
-* [Website and Community](#website-and-community)
-* [How to Buy/Use (If Applicable)](#how-to-buy-use)
-* [Disclaimer](#disclaimer)
-* [License](#license)
+    constructor() ERC20("MyMemeCoin", "MMC") {
+        _mint(msg.sender, initialSupply); // Mint initial supply to the deployer
+    }
 
-## Tokenomics <a name="tokenomics"></a>
+    // Function to enable trading (only owner)
+    function enableTrading() public onlyOwner {
+        tradingEnabled = true;
+    }
 
-* **Total Supply:**  (e.g., 1,000,000,000,000,000 SUN)
-* **Distribution:** (Be transparent!  e.g., 50% Community, 25% Development, 25% Marketing)  Explain how the initial tokens were distributed.
-* **Burning Mechanism (If any):**  (e.g., "1% of every transaction is burned.")  If there's a burn mechanism, explain it.
+    // Function to disable trading (only owner)
+    function disableTrading() public onlyOwner {
+        tradingEnabled = false;
+    }
 
-## Smart Contract <a name="smart-contract"></a>
 
-* **Address:** (The deployed smart contract address.  This is VERY important!)  e.g., `0x...`
-* **Verification:** (Link to the block explorer where the contract is verified, if applicable) e.g., [Etherscan](https://etherscan.io/address/0x...)
+    // Modified transfer function to include trading status and reentrancy guard
+    function transfer(address recipient, uint256 amount) public override nonReentrant returns (bool) { // Add nonReentrant
+        require(tradingEnabled, "Trading is currently disabled"); // Check trading status
 
-## Website and Community <a name="website-and-community"></a>
+        require(balanceOf(msg.sender) >= amount, "Insufficient balance");
+        _transfer(msg.sender, recipient, amount);
+        return true;
+    }
 
-* **Website:** [Your Website Link](https://yourwebsite.com)
-* **Twitter:** [Your Twitter Link](https://twitter.com/yoursuncoin)
-* **Telegram:** [Your Telegram Link](https://t.me/yoursuncoin)
-* **Discord:** [Your Discord Link](https://discord.gg/yoursuncoin) (If you have one)
+    // Modified transferFrom function to include trading status and reentrancy guard
+    function transferFrom(address sender, address recipient, uint256 amount) public override nonReentrant returns (bool) { // Add nonReentrant
+        require(tradingEnabled, "Trading is currently disabled"); // Check trading status
 
-## How to Buy/Use (If Applicable) <a name="how-to-buy-use"></a>
+        require(allowance(sender, msg.sender) >= amount, "Insufficient allowance");
+        require(balanceOf(sender) >= amount, "Insufficient balance");
 
-*(Explain how users can acquire your coin.  Be very clear and simple.)*
+        _transfer(sender, recipient, amount);
+        _approve(sender, msg.sender, allowance(sender, msg.sender) - amount);
+        return true;
+    }
 
-Example:
 
-1. Visit [Your Website](https://yourwebsite.com).
-2. Connect your wallet (e.g., MetaMask).
-3. Swap ETH/BNB for SUN.
+    // Burn function (only owner can burn)
+    function burn(uint256 amount) public onlyOwner {
+        _burn(msg.sender, amount);
+    }
 
-*(Or whatever the process is.)*
-
-## Disclaimer <a name="disclaimer"></a>
-
-*IMPORTANT:*  This is a meme coin. It has no intrinsic value.  Cryptocurrency investments are highly risky.  Do your own research and only invest what you can afford to lose.  The developers are not responsible for any losses.
-
-## License <a name="license"></a>
-
-MIT License (or your chosen license)
+    // Mint function (only owner can mint, restricted and with a cap)
+    uint256 public maxMintAmount = initialSupply / 10; // 10% of initial supply as a cap
+    function mint(address to, uint256 amount) public onlyOwner {
+        require(amount <= maxMintAmount, "Mint amount exceeds the cap");
+        _mint(to, amount);
+    }
+}
