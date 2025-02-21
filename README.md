@@ -1,94 +1,54 @@
-<header>
+# Sun (Your Meme Coin Name)
 
-<!--
-  <<< Author notes: Course header >>>
-  Read <https://skills.github.com/quickstart> for more information about how to build courses using this template.
-  Include a 1280×640 image, course name in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Next to "About", add description & tags; disable releases, packages, & environments.
-  Add your open source license, GitHub uses the MIT license.
--->
+A short, catchy, and informative description of your meme coin.  Examples:
 
-# Code with GitHub Copilot
+* "Sun is a community-driven meme coin radiating positive vibes. Join our solar system of fun!"
+* "Sun: The meme coin that's bringing the heat! Get ready to shine with our community."
+* "Sun: A beacon of light in the meme coin universe. Join our journey to the center of fun!"
 
-_GitHub Copilot can help you code by offering autocomplete-style suggestions right in VS Code and Codespaces._
+## Table of Contents (Optional but Recommended)
 
-</header>
+* [Tokenomics](#tokenomics)
+* [Smart Contract](#smart-contract)
+* [Website and Community](#website-and-community)
+* [How to Buy/Use (If Applicable)](#how-to-buy-use)
+* [Disclaimer](#disclaimer)
+* [License](#license)
 
-<!--
-  <<< Author notes: Step 1 >>>
-  Choose 3-5 steps for your course.
-  The first step is always the hardest, so pick something easy!
-  Link to docs.github.com for further explanations.
-  Encourage users to open new tabs for steps!
--->
+## Tokenomics <a name="tokenomics"></a>
 
-## Step 1: Leverage Codespaces with VS Code for Copilot
+* **Total Supply:**  (e.g., 1,000,000,000,000,000 SUN)
+* **Distribution:** (Be transparent!  e.g., 50% Community, 25% Development, 25% Marketing)  Explain how the initial tokens were distributed.
+* **Burning Mechanism (If any):**  (e.g., "1% of every transaction is burned.")  If there's a burn mechanism, explain it.
 
-_Welcome to "Develop With AI Powered Code Suggestions Using GitHub Copilot and VS Code"! :wave:_
+## Smart Contract <a name="smart-contract"></a>
 
-GitHub Copilot is an AI pair programmer that helps you write code faster and with less work. It draws context from comments and code to suggest individual lines and whole functions instantly. GitHub Copilot is powered by OpenAI Codex, a generative pretrained language model created by OpenAI.
+* **Address:** (The deployed smart contract address.  This is VERY important!)  e.g., `0x...`
+* **Verification:** (Link to the block explorer where the contract is verified, if applicable) e.g., [Etherscan](https://etherscan.io/address/0x...)
 
-**Copilot works with many code editors including VS Code, Visual Studio, JetBrains IDE, and Neovim.**
+## Website and Community <a name="website-and-community"></a>
 
-Additionally, GitHub Copilot is trained on all languages that appear in public repositories. For each language, the quality of suggestions you receive may depend on the volume and diversity of training data for that language.
+* **Website:** [Your Website Link](https://yourwebsite.com)
+* **Twitter:** [Your Twitter Link](https://twitter.com/yoursuncoin)
+* **Telegram:** [Your Telegram Link](https://t.me/yoursuncoin)
+* **Discord:** [Your Discord Link](https://discord.gg/yoursuncoin) (If you have one)
 
-Using Copilot inside a Codespace shows just how easy it is to get up and running with GitHub's suite of [Collaborative Coding](https://github.com/features#features-collaboration) tools.
+## How to Buy/Use (If Applicable) <a name="how-to-buy-use"></a>
 
-> **Note**
-> This skills exercise will focus on leveraging GitHub Codespace. It is recommended that you complete the GitHub skill, [Codespaces](https://github.com/skills/code-with-codespaces), before moving forward with this exercise.
+*(Explain how users can acquire your coin.  Be very clear and simple.)*
 
-### :keyboard: Activity: Enable Copilot inside a Codespace
+Example:
 
-**We recommend opening another browser tab to work through the following activities so you can keep these instructions open for reference.**
+1. Visit [Your Website](https://yourwebsite.com).
+2. Connect your wallet (e.g., MetaMask).
+3. Swap ETH/BNB for SUN.
 
-Before you open up a codespace on a repository, you can create a development container and define specific extensions or configurations that will be used or installed in your codespace. Let's create this development container and add copilot to the list of extensions.
+*(Or whatever the process is.)*
 
-1. Navigating back to your **Code** tab of your repository, click the **Add file** drop-down button, and then click `Create new file`.
-1. Type or paste the following in the empty text field prompt to name your file.
-   ```
-   .devcontainer/devcontainer.json
-   ```
-1. In the body of the new **.devcontainer/devcontainer.json** file, add the following content:
-   ```
-   {
-       // Name this configuration
-       "name": "Codespace for Skills!",
-       "customizations": {
-           "vscode": {
-               "extensions": [
-                   "GitHub.copilot"
-               ]
-           }
-       }
-   }
-   ```
-1. Select the option to **Commit directly to the `main` branch**, and then click the **Commit new file** button.
-1. Navigate back to the home page of your repository by clicking the **Code** tab located at the top left of the screen.
-1. Click the **Code** button located in the middle of the page.
-1. Click the **Codespaces** tab on the box that pops up.
-1. Click the **Create codespace on main** button.
+## Disclaimer <a name="disclaimer"></a>
 
-   **Wait about 2 minutes for the codespace to spin itself up.**
+*IMPORTANT:*  This is a meme coin. It has no intrinsic value.  Cryptocurrency investments are highly risky.  Do your own research and only invest what you can afford to lose.  The developers are not responsible for any losses.
 
-1. Verify your codespace is running. The browser should contain a VS Code web-based editor and a terminal should be present such as the below:
-   ![Screen Shot 2023-03-09 at 9 09 07 AM](https://user-images.githubusercontent.com/26442605/224102962-d0222578-3f10-4566-856d-8d59f28fcf2e.png)
-1. The `copilot` extension should show up in the VS Code extension list. Click the extensions sidebar tab. You should see the following:
-   ![Screen Shot 2023-03-09 at 9 04 13 AM](https://user-images.githubusercontent.com/26442605/224102514-7d6d2f51-f435-401d-a529-7bae3ae3e511.png)
+## License <a name="license"></a>
 
-**Wait about 60 seconds then refresh your repository landing page for the next step.**
-
-<footer>
-
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
-
----
-
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/code-with-copilot) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
-
-&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
-</footer>
+MIT License (or your chosen license)
